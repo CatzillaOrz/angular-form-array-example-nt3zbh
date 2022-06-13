@@ -29,6 +29,7 @@ import { FormControl, FormGroup, FormArray, FormBuilder } from '@angular/forms';
         <button (click)="addCreds()">Add</button>
         <button (click)="getData()">getData</button>
         <br>
+        <br>
         <textarea [value]="json" rows='20' cols='50'></textarea>
 
       </div>
