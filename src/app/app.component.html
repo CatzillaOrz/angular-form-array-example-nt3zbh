@@ -66,7 +66,7 @@
   <ng-container>
     <div
       formArrayName="fromArray.key"
-      *ngFor="let creds of fromArray; let i = index"
+      *ngFor="let creds of form.controls.credentials?.value; let i = index"
     >
       <ng-container [formGroupName]="i">
         <input placeholder="Username" formControlName="username" />
