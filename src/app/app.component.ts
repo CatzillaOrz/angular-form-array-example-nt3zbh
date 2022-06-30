@@ -16,6 +16,8 @@ export class AppComponent {
     { key: 'credentials', type: 'array' },
   ];
 
+  myContext = { $implicit: 'World', localSk: 'Svet' };
+
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
       // published: true,
