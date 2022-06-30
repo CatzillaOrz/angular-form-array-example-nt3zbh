@@ -1,4 +1,4 @@
-<form [formGroup]="form">
+<!-- <form [formGroup]="form">
   <ng-container *ngFor="let ctr of formCtrl; let i = index">
     <ng-container [ngSwitch]="ctr.type">
       <ng-container *ngSwitchCase="'checkbox'">
@@ -31,15 +31,17 @@
     </ng-container>
   </ng-container>
 
-  <div *ngIf="form.controls.published.value">
-    <h2>Credentials</h2>
-    <button (click)="addCreds()">Add</button>
-    <button (click)="getData()">getData</button>
-    <br />
-    <br />
-    <textarea [value]="json" rows="20" cols="50"></textarea>
-  </div>
-</form>
+  
+</form> -->
+
+<div *ngIf="form.controls.published.value">
+<h2>Credentials</h2>
+<button (click)="addCreds()">Add</button>
+<button (click)="getData()">getData</button>
+<br />
+<br />
+<textarea [value]="json" rows="20" cols="50"></textarea>
+</div>ß
 
 <div>
   <ng-container *ngTemplateOutlet="greet"></ng-container>
@@ -48,6 +50,7 @@
   <hr />
   <ng-container *ngTemplateOutlet="svk; context: myContext"></ng-container>
   <hr />
+  <ng-container *ngTemplateOutlet="formBase; context: formCtrl"> </ng-container>
 
   <ng-template #greet><span>Hello</span></ng-template>
   <ng-template #eng let-name
@@ -57,3 +60,45 @@
     ><span>Ahoj {{ person }}!</span></ng-template
   >
 </div>
+
+<ng-template #formArray let-fromArray>
+  <ng-container>
+    <div
+      formArrayName="credentials"
+      *ngFor="let creds of form.controls.credentials?.value; let i = index"
+    >
+      <ng-container [formGroupName]="i">
+        <input placeholder="Username" formControlName="username" />
+        <input placeholder="Password" formControlName="password" />
+      </ng-container>
+    </div>
+  </ng-container>
+</ng-template>
+
+<ng-template #formBase let-data>
+  <ng-container *ngFor="let ctr of data; let i = index">
+    <ng-container [ngSwitch]="ctr.type">
+      <ng-container *ngSwitchCase="'checkbox'">
+        <input
+          [type]="ctr.type"
+          [formControlName]="ctr.key"
+          ngModule
+          [value]="ctr.value"
+        />
+        Published
+      </ng-container>
+      <ng-container *ngSwitchCase="'input'">
+        <input
+          [type]="ctr.type"
+          [formControlName]="ctr.key"
+          [value]="ctr.value"
+        />
+      </ng-container>
+      <ng-container *ngSwitchCase="'array'">
+        <ng-container
+          *ngTemplateOutlet="formArray; context: ctr"
+        ></ng-container>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+</ng-template>

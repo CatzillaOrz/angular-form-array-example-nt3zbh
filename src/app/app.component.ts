@@ -9,12 +9,14 @@ export class AppComponent {
   form: FormGroup;
   json = '';
 
-  formCtrl = [
-    { key: 'published', type: 'checkbox', value: true },
-    { key: 'name', type: 'input', value: 'name' },
-    { key: 'password', type: 'input', value: 'password' },
-    { key: 'credentials', type: 'array' },
-  ];
+  formCtrl = {
+    $implicit: [
+      { key: 'published', type: 'checkbox', value: true },
+      { key: 'name', type: 'input', value: 'name' },
+      { key: 'password', type: 'input', value: 'password' },
+      { key: 'credentials', type: 'array' },
+    ],
+  };
 
   myContext = { $implicit: 'World', localSk: 'Svet' };
 
@@ -28,7 +30,7 @@ export class AppComponent {
   }
 
   setCtr() {
-    this.formCtrl.forEach((e) => {
+    this.formCtrl.$implicit.forEach((e) => {
       if (e.type === 'array') {
         this.form.addControl(e.key, this.fb.array([]));
       } else {
