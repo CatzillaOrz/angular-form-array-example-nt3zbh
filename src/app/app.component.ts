@@ -14,7 +14,11 @@ export class AppComponent {
       { key: 'published', type: 'checkbox', value: true },
       { key: 'name', type: 'input', value: 'name' },
       { key: 'password', type: 'input', value: 'password' },
-      { key: 'credentials', type: 'array' },
+      {
+        key: 'credentials',
+        type: 'array',
+        control: [],
+      },
     ],
   };
 
@@ -47,6 +51,11 @@ export class AppComponent {
         password: '',
       })
     );
+    this.formCtrl.$implicit[3].control.push(
+      { key: 'name', type: 'input', value: 'name' },
+      { key: 'password', type: 'input', value: 'password' }
+    );
+    this.setCtr();
   }
 
   getData() {

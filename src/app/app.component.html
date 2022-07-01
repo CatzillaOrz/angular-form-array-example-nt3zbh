@@ -43,7 +43,7 @@
   <textarea [value]="json" rows="20" cols="50"></textarea>
 </div>
 ß
-
+<!-- ngTemplateOutlet -->
 <div>
   <ng-container *ngTemplateOutlet="greet"></ng-container>
   <hr />
@@ -51,8 +51,8 @@
   <hr />
   <ng-container *ngTemplateOutlet="svk; context: myContext"></ng-container>
   <hr />
-  <ng-container *ngTemplateOutlet="formBase; context: formCtrl"> </ng-container>
 
+  <!-- ngTemplate example -->
   <ng-template #greet><span>Hello</span></ng-template>
   <ng-template #eng let-name
     ><span>Hello {{ name }}!</span></ng-template
@@ -62,20 +62,33 @@
   >
 </div>
 
-<ng-template #formArray let-fromArray>
+<!-- Test form base + array -->
+<div>
+  <form [formGroup]="form">
+    <ng-container *ngTemplateOutlet="formBase; context: formCtrl">
+    </ng-container>
+  </form>
+</div>
+
+<!-- formBase arry -->
+
+<ng-template #formArray let-formArray>
   <ng-container>
     <div
-      formArrayName="fromArray.key"
-      *ngFor="let creds of form.controls.credentials?.value; let i = index"
+      formArrayName="formArray.key"
+      *ngFor="let creds of formArray; let i = index"
     >
-      <ng-container [formGroupName]="i">
-        <input placeholder="Username" formControlName="username" />
-        <input placeholder="Password" formControlName="password" />
+      <ng-container
+        [formGroupName]="i"
+        *ngTemplateOutlet="formBase; context: creds"
+      >
+        brlajsh
       </ng-container>
     </div>
   </ng-container>
 </ng-template>
 
+<!-- formBase base -->
 <ng-template #formBase let-data>
   <ng-container *ngFor="let ctr of data; let i = index">
     <ng-container [ngSwitch]="ctr.type">
@@ -97,7 +110,7 @@
       </ng-container>
       <ng-container *ngSwitchCase="'array'">
         <ng-container
-          *ngTemplateOutlet="formArray; context: ctr"
+          *ngTemplateOutlet="formArray; context: ctr.control"
         ></ng-container>
       </ng-container>
     </ng-container>
