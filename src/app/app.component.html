@@ -43,31 +43,28 @@
   <textarea [value]="json" rows="20" cols="50"></textarea>
 </div>
 ß
-<!-- ngTemplateOutlet -->
-<div>
-  <ng-container *ngTemplateOutlet="greet"></ng-container>
-  <hr />
-  <ng-container *ngTemplateOutlet="eng; context: myContext"></ng-container>
-  <hr />
-  <ng-container *ngTemplateOutlet="svk; context: myContext"></ng-container>
-  <hr />
-
-  <!-- ngTemplate example -->
-  <ng-template #greet><span>Hello</span></ng-template>
-  <ng-template #eng let-name
-    ><span>Hello {{ name }}!</span></ng-template
-  >
-  <ng-template #svk let-person="localSk"
-    ><span>Ahoj {{ person }}!</span></ng-template
-  >
-</div>
 
 <!-- formBase arry -->
 
 <form [formGroup]="form">
   <!-- formBase base -->
-  <app-form-contorl
-    [formGroup]="form"
-    [controler]="formCtrl"
-  ></app-form-contorl>
+  <ng-container>
+    <div *ngFor="let item of formCtrl">
+      <app-form-control
+        [formGroup]="form"
+        [lacontroler]="item"
+      ></app-form-control>
+    </div>
+  </ng-container>
+  <ng-container>
+    <div
+      formArrayName="credentials"
+      *ngFor="let creds of form.controls.credentials?.value; let i = index"
+    >
+      <ng-container [formGroupName]="i">
+        <input placeholder="Username" formControlName="username" />
+        <input placeholder="Password" formControlName="password" />
+      </ng-container>
+    </div>
+  </ng-container>
 </form>

@@ -1,19 +1,19 @@
 <div [formGroup]="formGroup">
-  <ng-container [ngSwitch]="controler.type">
+  <ng-container [ngSwitch]="lacontroler.type">
     <ng-container *ngSwitchCase="'checkbox'">
       <input
-        [type]="controler.type"
-        [formControlName]="controler.key"
+        [type]="lacontroler.type"
+        [formControlName]="lacontroler.key"
         ngModule
-        [value]="controler.value"
+        [value]="lacontroler.value"
       />
       Published
     </ng-container>
     <ng-container *ngSwitchCase="'input'">
       <input
-        [type]="controler.type"
-        [formControlName]="controler.key"
-        [value]="controler.value"
+        [type]="lacontroler.type"
+        [formControlName]="lacontroler.key"
+        [value]="lacontroler.value"
       />
     </ng-container>
   </ng-container>

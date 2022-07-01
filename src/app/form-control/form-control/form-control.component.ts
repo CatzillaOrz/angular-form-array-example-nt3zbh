@@ -12,8 +12,10 @@ export class FormControlComponent implements OnInit {
   @Input()
   formGroup: FormGroup;
   @Input()
-  controler: laformControler[] | laformGroup[];
+  lacontroler: laformControler[] | laformGroup[];
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.lacontroler);
+  }
 }
