@@ -34,7 +34,7 @@
   
 </form> -->
 
-<div *ngIf="form.controls.published.value">
+<div>
   <h2>Credentials</h2>
   <button (click)="addCreds()">Add</button>
   <button (click)="getData()">getData</button>
@@ -64,55 +64,47 @@
 
 <!-- Test form base + array -->
 <div>
-  <form [formGroup]="form">
-    <ng-container *ngTemplateOutlet="formBase; context: formCtrl">
-    </ng-container>
-  </form>
+  <ng-container *ngTemplateOutlet="formBase; context: formCtrl"> </ng-container>
 </div>
 
 <!-- formBase arry -->
 
-<ng-template #formArray let-formArray>
-  <ng-container>
-    <div
-      formArrayName="formArray.key"
-      *ngFor="let creds of formArray; let i = index"
-    >
-      <ng-container
-        [formGroupName]="i"
-        *ngTemplateOutlet="formBase; context: creds"
-      >
-        brlajsh
-      </ng-container>
-    </div>
-  </ng-container>
-</ng-template>
-
-<!-- formBase base -->
-<ng-template #formBase let-data>
-  <ng-container *ngFor="let ctr of data; let i = index">
-    <ng-container [ngSwitch]="ctr.type">
-      <ng-container *ngSwitchCase="'checkbox'">
-        <input
-          [type]="ctr.type"
-          [formControlName]="ctr.key"
-          ngModule
-          [value]="ctr.value"
-        />
-        Published
-      </ng-container>
-      <ng-container *ngSwitchCase="'input'">
-        <input
-          [type]="ctr.type"
-          [formControlName]="ctr.key"
-          [value]="ctr.value"
-        />
-      </ng-container>
-      <ng-container *ngSwitchCase="'array'">
-        <ng-container
-          *ngTemplateOutlet="formArray; context: ctr.control"
-        ></ng-container>
+<form [formGroup]="form">
+  <!-- formBase base -->
+  <ng-template #formBase let-data>
+    <ng-container *ngFor="let ctr of data; let i = index">
+      <ng-container [ngSwitch]="ctr.type">
+        <ng-container *ngSwitchCase="'checkbox'">
+          <input
+            [type]="ctr.type"
+            [formControlName]="ctr.key"
+            ngModule
+            [value]="ctr.value"
+          />
+          Published
+        </ng-container>
+        <ng-container *ngSwitchCase="'input'">
+          <input
+            [type]="ctr.type"
+            [formControlName]="ctr.key"
+            [value]="ctr.value"
+          />
+        </ng-container>
+        <ng-container *ngSwitchCase="'array'">
+          <div
+            formArrayName="credentials"
+            *ngFor="
+              let creds of form.controls.credentials?.value;
+              let i = index
+            "
+          >
+            <ng-container [formGroupName]="i">
+              <input placeholder="Username" formControlName="username" />
+              <input placeholder="Password" formControlName="password" />
+            </ng-container>
+          </div>
+        </ng-container>
       </ng-container>
     </ng-container>
-  </ng-container>
-</ng-template>
+  </ng-template>
+</form>

@@ -51,11 +51,6 @@ export class AppComponent {
         password: '',
       })
     );
-    this.formCtrl.$implicit[3].control.push(
-      { key: 'name', type: 'input', value: 'name' },
-      { key: 'password', type: 'input', value: 'password' }
-    );
-    this.setCtr();
   }
 
   getData() {
