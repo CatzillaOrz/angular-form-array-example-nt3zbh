@@ -16,6 +16,13 @@
         [value]="lacontroler.value"
       />
     </ng-container>
+    <ng-container *ngSwitchCase="'password'">
+      <input
+        [type]="lacontroler.type"
+        [formControlName]="lacontroler.key"
+        [value]="lacontroler.value"
+      />
+    </ng-container>
     <app-input-array
       *ngSwitchCase="'inputArray'"
       [formControlName]="lacontroler.key"

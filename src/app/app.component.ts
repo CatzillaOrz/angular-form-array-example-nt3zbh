@@ -13,7 +13,7 @@ export class AppComponent {
   formCtrl = [
     { key: 'published', type: 'checkbox', value: true },
     { key: 'name', type: 'input', value: 'name' },
-    { key: 'password', type: 'input', value: 'password' },
+    { key: 'password', type: 'password', value: 'password' },
     {
       key: 'credentials',
       type: 'array',
@@ -56,7 +56,7 @@ export class AppComponent {
     creds.push(
       this.fb.group({
         username: '',
-        password: '',
+        password: '123456',
       })
     );
   }
