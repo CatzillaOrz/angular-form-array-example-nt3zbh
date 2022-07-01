@@ -61,6 +61,13 @@ export class AppComponent {
     );
   }
 
+  addInputArray() {
+    let val = this.form.getRawValue()['inputArray'];
+    this.form.patchValue({
+      inputArray: [...val, ...[{ label: 'test', value: 'test' }]],
+    });
+  }
+
   getData() {
     this.json = JSON.stringify(this.form.getRawValue(), null, ' ');
   }
