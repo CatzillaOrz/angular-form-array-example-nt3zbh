@@ -1,4 +1,6 @@
-<div *ngFor="let item of value; index as i">
-  <label>{{ item.label }}</label>
-  <input [(ngModel)]="item.value" />
-</div>
+<ul class="app-input-array">
+  <li *ngFor="let item of value; index as i">
+    <span>{{ item.label }}</span>
+    <input [(ngModel)]="item.value" />
+  </li>
+</ul>

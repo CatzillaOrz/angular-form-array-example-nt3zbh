@@ -7,6 +7,11 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
+export interface inputArrayValue {
+  label?: string;
+  value?: string;
+}
+
 @Component({
   selector: 'app-input-array',
   templateUrl: './input-array.component.html',
@@ -23,7 +28,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 export class InputArrayComponent implements OnInit, ControlValueAccessor {
   constructor() {}
 
-  @Input() value;
+  @Input() value: inputArrayValue[];
   onChange: (value: any) => void;
   onTouch: (value) => void;
   disabled: boolean = false;
