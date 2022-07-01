@@ -1,11 +1,19 @@
 app-input-array {
   ul {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
     list-style: none;
+    justify-items: stretch;
+    flex-flow: column;
     span {
       margin: 5px 10px;
+      font-size: 16px;
+      width: 50px;
+      word-break: break-all;
     }
     li {
-      display: block;
+      display: flex;
     }
   }
 }
