@@ -1,0 +1,4 @@
+<div *ngFor="let item of value; index as i">
+  <label>{{ item.label }}</label>
+  <input [(ngModel)]="item.value" />
+</div>

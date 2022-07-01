@@ -19,6 +19,16 @@ export class AppComponent {
       type: 'array',
       control: [],
     },
+    {
+      key: 'inputArray',
+      type: 'inputArray',
+      value: [
+        {
+          label: 'name',
+          value: 'Alice',
+        },
+      ],
+    },
   ];
   myContext = { $implicit: 'World', localSk: 'Svet' };
 

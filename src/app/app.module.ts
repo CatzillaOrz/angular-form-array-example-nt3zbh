@@ -4,8 +4,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { FormControlComponent } from './form-control/form-control/form-control.component';
+import { InputArrayComponent } from './input-array/input-array.component';
 
-const CUSTOMER_COMPOENENT = [FormControlComponent];
+const CUSTOMER_COMPOENENT = [FormControlComponent, InputArrayComponent];
 
 @NgModule({
   imports: [BrowserModule, ReactiveFormsModule],
