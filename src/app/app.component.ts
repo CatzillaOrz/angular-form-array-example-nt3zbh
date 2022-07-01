@@ -1,27 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, FormArray, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'my-app',
   templateUrl: 'app.component.html',
+  encapsulation: ViewEncapsulation.None,
 })
 export class AppComponent {
   form: FormGroup;
   json = '';
 
-  formCtrl = {
-    $implicit: [
-      { key: 'published', type: 'checkbox', value: true },
-      { key: 'name', type: 'input', value: 'name' },
-      { key: 'password', type: 'input', value: 'password' },
-      {
-        key: 'credentials',
-        type: 'array',
-        control: [],
-      },
-    ],
-  };
-
+  formCtrl = [
+    { key: 'published', type: 'checkbox', value: true },
+    { key: 'name', type: 'input', value: 'name' },
+    { key: 'password', type: 'input', value: 'password' },
+    {
+      key: 'credentials',
+      type: 'array',
+      control: [],
+    },
+  ];
   myContext = { $implicit: 'World', localSk: 'Svet' };
 
   constructor(private fb: FormBuilder) {
@@ -34,7 +32,7 @@ export class AppComponent {
   }
 
   setCtr() {
-    this.formCtrl.$implicit.forEach((e) => {
+    this.formCtrl.forEach((e) => {
       if (e.type === 'array') {
         this.form.addControl(e.key, this.fb.array([]));
       } else {
