@@ -27,13 +27,13 @@ export function initilaizeApp1(appInitService: AppInitService) {
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
   providers: [
-    ...CUSTOMER_SERVICES,
-    {
-      provide: APP_INITIALIZER,
-      useFactory: initilaizeApp1,
-      deps: [AppInitService],
-      multi: true,
-    },
+    // ...CUSTOMER_SERVICES,
+    // {
+    //   provide: APP_INITIALIZER,
+    //   useFactory: initilaizeApp1,
+    //   deps: [AppInitService],
+    //   multi: true,
+    // },
   ],
 })
 export class AppModule {}
